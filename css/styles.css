@@ -41,8 +41,8 @@ p {
 
 .header {
   border-bottom: 1px solid var(--border-project);
-  padding-top: 24px;
-  padding-bottom: 24px;
+  /* padding-top: 24px;
+  padding-bottom: 24px; */
 
   font-weight: 500;
   font-size: 14px;
@@ -84,9 +84,30 @@ p {
 
 .nav-link {
   display: block;
+  position: relative;
+  padding-top: 32px;
+  padding-bottom: 32px;
 
   color: var(--title-text-color);
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* подчеркивание ссылки текущей страницы */
+.studio::after,
+.portfolio::after {
+  content: '';
+
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  left: 0;
+  bottom: 0;
+
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 .header-contact {
@@ -102,8 +123,11 @@ p {
 .contact {
   display: flex;
   align-items: center;
+
   color: var(--primery-text-color);
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover,
@@ -217,7 +241,7 @@ p {
   letter-spacing: 0.03em;
 }
 
-/* Чем мы занимаемся, Команда */
+/* Чем мы занимаемся*/
 
 .services {
   padding-top: 94px;
@@ -231,6 +255,36 @@ p {
 .services-list .item + .item {
   margin-left: 30px;
 }
+
+.thumb {
+  position: relative;
+  text-align: center;
+}
+.img-servises {
+  display: block;
+}
+.label-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  padding-top: 27px;
+  padding-bottom: 27px;
+
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
+.label {
+  color: var(--white-text-color);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.1; /*16px*/
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Команда  */
 
 .team {
   padding-top: 94px;
@@ -305,6 +359,10 @@ p {
   height: 44px;
 
   color: var(--icon-color);
+  border-radius: 50%;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link-icon-network:hover,
@@ -314,6 +372,7 @@ p {
 
   color: var(--white-text-color);
 }
+
 .icon-network {
   fill: currentColor;
 }
@@ -340,6 +399,9 @@ p {
   border-radius: 4px;
 
   color: var(--icon-color);
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .link-client:hover,
 .link-client:focus {
@@ -414,6 +476,8 @@ p {
   border-radius: 50%;
 
   color: var(--white-text-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .network-footer:hover,
 .network-footer:focus {
@@ -469,6 +533,10 @@ p {
   font-size: 16px;
   line-height: 1.6; /*26px*/
   letter-spacing: 0.03em;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
@@ -503,6 +571,8 @@ p {
 .card {
   display: block;
   text-decoration: none;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card:hover,
 .card:focus {
@@ -538,4 +608,85 @@ p {
   font-size: 16px;
   line-height: 1.9; /*30px*/
   letter-spacing: 0.03em;
+}
+
+.box-overlay-project {
+  position: relative;
+  overflow: hidden;
+}
+.overlay-project {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.overlay-text {
+  color: var(--white-text-color);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6; /*28px*/
+  letter-spacing: 0.03em;
+}
+
+.card:hover .overlay-project {
+  transform: translateY(0);
+}
+
+/* Модальное окно */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 150ms linear;
+}
+.modal {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 528px;
+  min-height: 581px;
+  padding: 8px;
+
+  background-color: var(--white-text-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 200ms linear 100ms;
+}
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-close {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+.icon-close {
+  fill: currentColor;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
 }
